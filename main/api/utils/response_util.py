@@ -19,7 +19,7 @@ def error_response(message, status_code):
     return JSONResponse(data, status_code=status_code)
 
 
-def ok_response(message, status_code=200, cookies: dict = {}, **additional_data):
+def ok_response(message: str, status_code: int = 200, cookies: dict = None, **additional_data):
     """
     The function will create https ok response
     :param message:
@@ -28,6 +28,8 @@ def ok_response(message, status_code=200, cookies: dict = {}, **additional_data)
     :param additional_data:
     :return: dict
     """
+    if not cookies:
+        cookies = {}
     data = {
         'status': 'OK',
         'code': status_code,
